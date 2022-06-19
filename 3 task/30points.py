@@ -7,6 +7,7 @@ sql = sqlite3.connect('memes.db', check_same_thread=False)
 con = sql.cursor()
 
 
+# получение мема исходя из заданного приорететным и количества лайков на мемах (необходим токен пользователя)
 @app.route('/get_memes/<id>', methods=['GET'])
 def give_memes(id):
     try:
@@ -42,7 +43,7 @@ def give_memes(id):
     except Exception as Error:
         return jsonify({'error': str(Error)})
 
-
+#лайк
 @app.route('/like_meme/<id>', methods=['GET'])
 def like_meme(id):
     try:
@@ -61,7 +62,7 @@ def like_meme(id):
     except Exception as Error:
         return jsonify({'error': str(Error)})
 
-
+#скип
 @app.route('/skip_meme/<id>', methods=['GET'])
 def skip_meme(id):
     try:
@@ -73,7 +74,7 @@ def skip_meme(id):
     except Exception as Error:
         return jsonify({'error': str(Error)})
 
-
+#добавление пользователя и выдача токена
 @app.route('/add_user', methods=['GET'])
 def add_role():
     try:
@@ -84,7 +85,7 @@ def add_role():
     except Exception as Error:
         return jsonify({'error': str(Error)})
 
-
+#по токену выдача админских пров пользователю
 @app.route('/make_admin/<token>', methods=['GET'])
 def make_admin(token):
     try:
@@ -98,7 +99,7 @@ def make_admin(token):
     except Exception as Error:
         return jsonify({'error': str(Error)})
 
-
+#делаем мем приорететным по id
 @app.route('/priority/<id_mem>')
 def priority(id_mem):
     try:

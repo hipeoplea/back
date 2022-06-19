@@ -1,10 +1,11 @@
+# в файле test.py примеры запросов
 import sqlite3
 from flask import Flask, jsonify, Response
 
 app = Flask(__name__)
 sql = sqlite3.connect('memes.db', check_same_thread=False)
 
-
+#метод возвращает список мемов с данными о них
 @app.route('/get_memes', methods=['GET'])
 def give_memes():
     try:
@@ -22,6 +23,7 @@ def give_memes():
     except Exception as Error:
         return jsonify({'error': str(Error)})
 
+#количество лайков у мема с заданным id увеличивается на 1
 @app.route('/like_meme/<mem_id>', methods=['GET'])
 def like_meme(mem_id):
     try:
@@ -36,6 +38,7 @@ def like_meme(mem_id):
     except Exception as Error:
         return jsonify({'error': str(Error)})
 
+#количество лайков у мема с заданным id уменьшается на 1
 @app.route('/skip_meme/<mem_id>', methods=['GET'])
 def skip_meme(mem_id):
     try:

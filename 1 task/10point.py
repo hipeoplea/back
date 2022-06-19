@@ -6,3 +6,6 @@ resp = vk_api.photos.get(owner_id='-197700721', album_id='284717200', extended=1
 for i in resp:
     fio = vk_api.users.get(user_ids=i['user_id'], v=5.131)[0]
     print(i['sizes'][-1]['url'], '\n', 'user:', fio['first_name'], fio['last_name'],'likes:', i['likes']['count'], '\n')
+
+
+#при запуске выводит в консоль ссылку на картинку, автора мема и количество лайков
